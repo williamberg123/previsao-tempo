@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/previsao-tempo/static/css/main.f2e21cd7.css",
-    "main.js": "/previsao-tempo/static/js/main.7a1f504a.js",
+    "main.js": "/previsao-tempo/static/js/main.4669c98b.js",
     "index.html": "/previsao-tempo/index.html",
     "main.f2e21cd7.css.map": "/previsao-tempo/static/css/main.f2e21cd7.css.map",
-    "main.7a1f504a.js.map": "/previsao-tempo/static/js/main.7a1f504a.js.map"
+    "main.4669c98b.js.map": "/previsao-tempo/static/js/main.4669c98b.js.map"
   },
   "entrypoints": [
     "static/css/main.f2e21cd7.css",
-    "static/js/main.7a1f504a.js"
+    "static/js/main.4669c98b.js"
   ]
 }
