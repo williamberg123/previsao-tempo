@@ -1,0 +1,7 @@
+.Header {
+    width: 100%;
+    background: linear-gradient(to right, #05EB7D, #07CCDE);
+    color: white;
+    padding: 30px;
+    font-size: 0.8rem;
+}
