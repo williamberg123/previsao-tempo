@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function SearchCityContainer({ children }) {
     return (
@@ -7,3 +8,7 @@ export default function SearchCityContainer({ children }) {
         </div>
     );
 }
+
+SearchCityContainer.propTypes = {
+    children: PropTypes.node.isRequired,
+};

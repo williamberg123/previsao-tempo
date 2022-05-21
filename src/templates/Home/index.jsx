@@ -3,38 +3,39 @@ import React, { useContext } from 'react';
 import AppContext from '../../AppContext';
 import Header from '../../components/Header';
 import SearchCityContainer from '../../containers/SearchCityContainer';
-import WeightItem from '../../components/WeightItem';
 import Main from '../../containers/Main';
+import Form from '../../components/Form';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
 
 import states from '../../utils/states';
 
 import './style.css';
+import Option from '../../components/Option';
+import Button from '../../components/Button';
 
 export default function Home() {
-    const { weighData } = useContext(AppContext);
-
-    // const {
-    //     city, currently, date, description, humidity, temp, time, wind_speedy, sunrise, sunset
-    // } = weighData;
+    const { handleSubmit } = useContext(AppContext);
 
     const selectChildren = states.map((state) => {
         const { sigla } = state;
-        return <option key={sigla} value={sigla}>{sigla}</option>
+        return (<Option key={sigla} text={sigla} />);
     });
 
     return (
         <div className="Home">
             <Header>
-                <h1>CLIMA</h1>
+                <h1>APP DE CLIMA</h1>
             </Header>
 
             <SearchCityContainer>
-                <Input type="text" className="city-name" />
-                <Select>
-                    {selectChildren}
-                </Select>
+                <Form func={handleSubmit}>
+                    <Input type="text" className="city-name" />
+                    <Select>
+                        {selectChildren}
+                    </Select>
+                    <Button type="submit" text="procurar" elementClass="Form-submit" />
+                </Form>
             </SearchCityContainer>
 
             <Main>

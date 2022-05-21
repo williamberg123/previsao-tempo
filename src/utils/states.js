@@ -25,7 +25,7 @@ const states = [
     { sigla: 'SC' },
     { sigla: 'SP' },
     { sigla: 'SE' },
-    { sigla: 'TO' }
-]
+    { sigla: 'TO' },
+];
 
 export default states;

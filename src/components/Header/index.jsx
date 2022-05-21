@@ -12,5 +12,5 @@ export default function Header({ children }) {
 }
 
 Header.propTypes = {
-    children: PropTypes.node.isRequired
-}
+    children: PropTypes.node.isRequired,
+};

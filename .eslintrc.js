@@ -23,6 +23,9 @@ module.exports = {
     'no-tabs': 'off',
     'react/jsx-curly-spacing': 'off',
     'react/jsx-filename-extension': 'off',
-    'array-bracket-spacing':' off'
+    'array-bracket-spacing': 'off',
+    'react/require-default-props': 'off',
+    'react/button-has-type': 'off',
+    'object-curly-newline': 'off',
   },
 };

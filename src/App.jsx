@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import AppRoutes from './routes';
 import AppContext from './AppContext';
@@ -9,22 +9,33 @@ import './App.css';
 
 export default function App() {
 	const [ weightData, setWeightData ] = useState(null);
-	const [ baseUrl ] = useState('https://api.hgbrasil.com/weather?woeid=456348&format=json-cors&key=b14d1329');
 	const [ apiKey ] = useState('b14d1329');
-	const [ woeid ] = useState('456348');
+	const [ latitude, setLatitude ] = useState('');
+	const [ longitude, setLongitude ] = useState('');
 
 	const loadWeightData = async () => {
-		const weightData = await fetchWeightData(baseUrl);
-		setWeightData(weightData.data.results);
-	}
+		const url = `https://api.hgbrasil.com/weather?key=${apiKey}&lat=${latitude}&lon=${longitude}&user_ip=remote`;
+		if (!latitude || !longitude) return;
+		const weight = await fetchWeightData(url);
+		setWeightData(weight);
+	};
+
+	const handleSubmit = useCallback((e) => {
+		e.preventDefault();
+	}, []);
+
+	navigator.geolocation.getCurrentPosition((position) => {
+		const lat = position.coords.latitude;
+		const lon = position.coords.longitude;
+		setLatitude(lat);
+		setLongitude(lon);
+	});
 
 	useEffect(() => {
 		loadWeightData();
-	}, []);
+	}, [latitude, longitude]);
 
-	console.log(weightData);
-
-	const memoizedAppContext = useMemo(() => ({ weightData }), [weightData]);
+	const memoizedAppContext = useMemo(() => ({ weightData, handleSubmit }), [weightData]);
 
 	return (
 		<div className="App">

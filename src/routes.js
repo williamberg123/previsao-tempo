@@ -6,7 +6,7 @@ import Home from './templates/Home';
 export default function AppRoutes() {
     return (
         <Routes>
-            <Route path="/" element={ <Home /> } />
+            <Route path="/previsao-do-tempo/" element={ <Home /> } />
         </Routes>
     );
 }

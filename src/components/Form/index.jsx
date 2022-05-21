@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Main({ children }) {
+export default function Form({ children, func }) {
     return (
-        <main>
+        <form onSubmit={func}>
             {children}
-        </main>
+        </form>
     );
 }
 
-Main.propTypes = {
+Form.propTypes = {
     children: PropTypes.node.isRequired,
+    func: PropTypes.func.isRequired,
 };
