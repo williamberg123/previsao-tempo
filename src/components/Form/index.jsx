@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Form({ children, func }) {
+import './style.css';
+
+export default function Form({ children, func, elementClass }) {
     return (
-        <form onSubmit={func}>
+        <form className={elementClass} onSubmit={func}>
             {children}
         </form>
     );
@@ -12,4 +14,5 @@ export default function Form({ children, func }) {
 Form.propTypes = {
     children: PropTypes.node.isRequired,
     func: PropTypes.func.isRequired,
+    elementClass: PropTypes.string,
 };

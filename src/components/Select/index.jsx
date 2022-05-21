@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function Select({ children }) {
     return (
-        <select>
+        <select id="select-of-states">
             {children}
         </select>
     );

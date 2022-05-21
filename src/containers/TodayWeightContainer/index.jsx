@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './style.css';
-
-export default function SearchCityContainer({ children }) {
+export default function TodayWeightContainer({ children }) {
     return (
-        <div className="SearchCityContainer">
+        <div className="TodayWeightContainer">
             {children}
         </div>
     );
 }
 
-SearchCityContainer.propTypes = {
+TodayWeightContainer.propTypes = {
     children: PropTypes.node.isRequired,
 };

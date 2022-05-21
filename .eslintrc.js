@@ -27,5 +27,12 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/button-has-type': 'off',
     'object-curly-newline': 'off',
+    'no-trailing-spaces': 'off',
+    'react/jsx-indent-props': 'off',
+    'max-len': 'off',
+    'no-shadow': 'off',
+    'no-alert': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    'no-console': 'off',
   },
 };

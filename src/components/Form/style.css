@@ -1,0 +1,47 @@
+.Form-get-by-city, .Form-get-by-geolocation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 500px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.Form-get-by-city h2, .Form-get-by-geolocation h2 {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.Form-get-by-city label, .Form-get-by-geolocation label {
+    margin: 20px 0 10px;
+    text-align: left;
+}
+
+.Form-get-by-city .Form-inputs, .Form-get-by-geolocation .Form-inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Form-get-by-city .Form-inputs select {
+    padding: 10px;
+}
+
+.Form-get-by-city .Form-inputs button, .Form-get-by-geolocation .Form-inputs button {
+    background-color: #ff8a2a;
+    color: white;
+    font-weight: bolder;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 25px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.Form-get-by-city .Form-inputs input[type="text"] {
+    padding: 10px;
+}

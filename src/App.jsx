@@ -1,41 +1,77 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import AppRoutes from './routes';
 import AppContext from './AppContext';
 
-import fetchWeightData from './utils/fetchWeightData';
+import getWeightData from './utils/getWeightData';
 
 import './App.css';
 
 export default function App() {
 	const [ weightData, setWeightData ] = useState(null);
-	const [ apiKey ] = useState('b14d1329');
-	const [ latitude, setLatitude ] = useState('');
-	const [ longitude, setLongitude ] = useState('');
+	const [ apiKey ] = useState('a8c75cce');
+	const [ cityName, setCityName ] = useState('');
 
-	const loadWeightData = async () => {
-		const url = `https://api.hgbrasil.com/weather?key=${apiKey}&lat=${latitude}&lon=${longitude}&user_ip=remote`;
-		if (!latitude || !longitude) return;
-		const weight = await fetchWeightData(url);
-		setWeightData(weight);
+	const loadWeightData = async (typeOfRequest, lat, lon, stringOfCity) => {
+		const url = typeOfRequest === 'byGeolocation'
+		? `https://api.hgbrasil.com/weather?key=${apiKey}&lat=${lat}&lon=${lon}&user_ip=remote&format=json-cors`
+		: `https://api.hgbrasil.com/weather?key=${apiKey}&city_name=${stringOfCity}&format=json-cors`;
+		
+		const weight = await getWeightData(url, apiKey);
+		alert(weight.data.results);
+
+		setWeightData(weight.data.results);
 	};
 
-	const handleSubmit = useCallback((e) => {
+	const generateStringOfCityRequest = (city, state) => `${city},${state}`;
+
+	const getDataByGeolocation = () => {
+		navigator.geolocation.getCurrentPosition((position) => {
+			const lat = position.coords.latitude;
+			const lon = position.coords.longitude;
+			
+			loadWeightData('byGeolocation', lat, lon);
+		});
+	};
+
+	const getDataByCityAndState = (cityName) => {
+		if (!cityName) {
+			alert('Insira o nome da cidade');
+			return;
+		}
+
+		const select = document.querySelector('#select-of-states');
+		const stateIndex = select.selectedIndex;
+
+		const state = select[stateIndex].value;
+
+		const stringOfCity = generateStringOfCityRequest(cityName, state);
+
+		loadWeightData('byCity', '', '', stringOfCity);
+	};
+
+	const handleSubmit = useCallback((e, typeOfRequest) => {
 		e.preventDefault();
+
+		if (typeOfRequest === 'byGeolocation') {
+			getDataByGeolocation();
+		} else {
+			getDataByCityAndState(cityName);
+		}
+	}, [cityName]);
+
+	const handleChangeCityName = useCallback((e) => {
+		const typedValue = e.target.value;
+		setCityName(typedValue);
 	}, []);
 
-	navigator.geolocation.getCurrentPosition((position) => {
-		const lat = position.coords.latitude;
-		const lon = position.coords.longitude;
-		setLatitude(lat);
-		setLongitude(lon);
-	});
-
-	useEffect(() => {
-		loadWeightData();
-	}, [latitude, longitude]);
-
-	const memoizedAppContext = useMemo(() => ({ weightData, handleSubmit }), [weightData]);
+	const memoizedAppContext = useMemo(
+		() => (
+			{
+				weightData, handleSubmit, handleChangeCityName, cityName,
+			}),
+		[weightData, cityName],
+	);
 
 	return (
 		<div className="App">
