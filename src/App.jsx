@@ -9,16 +9,16 @@ import './App.css';
 
 export default function App() {
 	const [ weightData, setWeightData ] = useState(null);
-	const [ apiKey ] = useState('a8c75cce');
+	const [ apiKeyOfficial ] = useState('b64885a4');
+	// const [ keyToCode ] = useState('a8c75cce');
 	const [ cityName, setCityName ] = useState('');
 
 	const loadWeightData = async (typeOfRequest, lat, lon, stringOfCity) => {
 		const url = typeOfRequest === 'byGeolocation'
-		? `https://api.hgbrasil.com/weather?key=${apiKey}&lat=${lat}&lon=${lon}&user_ip=remote&format=json-cors`
-		: `https://api.hgbrasil.com/weather?key=${apiKey}&city_name=${stringOfCity}&format=json-cors`;
+		? `https://api.hgbrasil.com/weather?key=${apiKeyOfficial}&lat=${lat}&lon=${lon}&user_ip=remote&format=json-cors`
+		: `https://api.hgbrasil.com/weather?key=${apiKeyOfficial}&city_name=${stringOfCity}&format=json-cors`;
 		
-		const weight = await getWeightData(url, apiKey);
-		alert(weight.data.results);
+		const weight = await getWeightData(url);
 
 		setWeightData(weight.data.results);
 	};

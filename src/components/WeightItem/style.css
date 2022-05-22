@@ -1,0 +1,20 @@
+.WeightItem {
+    padding: 30px;
+    box-shadow: 2px 2px 7px rgb(128, 128, 128);
+    border-radius: 10px;
+}
+
+.WeightItem h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.WeightItem p {
+    margin-top: 5px;
+}
+
+.WeightItem svg {
+    width: 20px;
+    height: 20px;
+}

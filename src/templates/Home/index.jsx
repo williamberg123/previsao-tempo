@@ -36,8 +36,6 @@ export default function Home() {
     // ? weightDataArray.map((data) => <div>{data}</div>)
     // : null;
 
-    console.log(weightData);
-
     return (
         <div className="Home">
             <Header>
@@ -74,7 +72,7 @@ export default function Home() {
             <Main>
                 <TodayWeightContainer>
                     <RenderIf condition={!!weightData}>
-                        <h2>PREVISÃO DO TEMPO PARA HOJE</h2>
+                        <h2>CLIMA PARA SUA CIDADE HOJE</h2>
                         <TodayWeightData />
                     </RenderIf>
                 </TodayWeightContainer>

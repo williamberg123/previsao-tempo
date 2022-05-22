@@ -1,0 +1,20 @@
+.TodayWeightContainer h2 {
+    margin-left: 60px;
+    color: #ff8a2a;
+}
+
+.TodayWeightContainer h2 span {
+    margin-left: auto;
+}
+
+@media (max-width: 1000px) {
+    .TodayWeightContainer h2 {
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .TodayWeightContainer h2 {
+        font-size: 1.2rem;
+    }
+}

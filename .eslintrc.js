@@ -34,5 +34,6 @@ module.exports = {
     'no-alert': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'no-console': 'off',
+    camelcase: 'off',
   },
 };
