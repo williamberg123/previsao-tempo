@@ -10,6 +10,7 @@ import './App.css';
 export default function App() {
 	const [ weightData, setWeightData ] = useState(null);
 	const [ cityName, setCityName ] = useState('');
+	const [ isLoading, setIsLoading ] = useState(false);
 
 	const loadWeightData = async (typeOfRequest, lat, lon, stringOfCity) => {
 		const apiKeyOfficial = process.env.REACT_APP_API_KEY;
@@ -25,6 +26,9 @@ export default function App() {
 	const generateStringOfCityRequest = (city, state) => `${city},${state}`;
 
 	const getDataByGeolocation = () => {
+		setIsLoading(true);
+		setWeightData(null);
+
 		navigator.geolocation.getCurrentPosition((position) => {
 			const lat = position.coords.latitude;
 			const lon = position.coords.longitude;
@@ -38,6 +42,9 @@ export default function App() {
 			alert('Insira o nome da cidade');
 			return;
 		}
+		
+		setIsLoading(true);
+		setWeightData(null);
 
 		const select = document.querySelector('#select-of-states');
 		const stateIndex = select.selectedIndex;
@@ -67,9 +74,9 @@ export default function App() {
 	const memoizedAppContext = useMemo(
 		() => (
 			{
-				weightData, handleSubmit, handleChangeCityName, cityName,
+				weightData, handleSubmit, handleChangeCityName, cityName, isLoading,
 			}),
-		[weightData, cityName],
+		[weightData, cityName, isLoading],
 	);
 
 	return (

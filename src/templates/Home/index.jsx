@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
-import AppContext from '../../AppContext';
+import Loader from 'react-js-loader';
+
 import Header from '../../components/Header';
 import SearchCityContainer from '../../containers/SearchCityContainer';
 import Main from '../../containers/Main';
@@ -13,12 +14,14 @@ import TodayWeightContainer from '../../containers/TodayWeightContainer';
 import TodayWeightData from '../../containers/TodayWeightData';
 import RenderIf from '../../components/RenderIf';
 
+import AppContext from '../../AppContext';
+
 import states from '../../utils/states';
 
 import './style.css';
 
 export default function Home() {
-    const { weightData, handleSubmit, handleChangeCityName } = useContext(AppContext);
+    const { weightData, handleSubmit, handleChangeCityName, isLoading } = useContext(AppContext);
 
     const selectChildren = states.map((state) => {
         const { sigla } = state;
@@ -71,6 +74,10 @@ export default function Home() {
 
             <Main>
                 <TodayWeightContainer>
+                    <RenderIf condition={ isLoading && !weightData }>
+                        <h2>CLIMA PARA SUA CIDADE HOJE</h2>
+                        <Loader type="spinner-default" bgColor="#000000" size={80} />
+                    </RenderIf>
                     <RenderIf condition={!!weightData}>
                         <h2>CLIMA PARA SUA CIDADE HOJE</h2>
                         <TodayWeightData />
